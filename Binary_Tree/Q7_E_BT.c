@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -102,6 +103,26 @@ int main()
 
 int smallestValue(BTNode *node)
 {
+    if(node==NULL){
+        return INT_MAX;
+    }
+    int minItem,leftMin,rightMin;
+    minItem=node->item;
+    if(node->left != NULL){
+        leftMin=smallestValue(node->left);
+    
+        if(minItem>leftMin){
+            minItem=leftMin;
+            
+    }}
+    if(node->right !=NULL){
+        rightMin=smallestValue(node->right);
+    
+        if(minItem>rightMin){
+            minItem=rightMin;
+    }}
+    return minItem;
+
 	/* 여기에 코드를 작성하세요 */
 }
 

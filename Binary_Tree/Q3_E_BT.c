@@ -101,6 +101,18 @@ int main()
 int countOneChildNodes(BTNode *node)
 
 {
+    if(node==NULL){
+        return 0;
+    }
+    int leftCount, rightCount;
+    leftCount=countOneChildNodes(node->left);
+    rightCount=countOneChildNodes(node->right);
+    if(node->left !=NULL && node->right==NULL || node->left==NULL && node->right !=NULL){
+        return (leftCount+rightCount)+1;
+    }
+    else{
+        return leftCount+rightCount;
+    }
     /* 여기에 코드를 작성하세요 */
 }
 
