@@ -1,14 +1,13 @@
-﻿//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
-/* CE1007/CZ1007 자료구조
-실습 테스트: Section E - 이진 트리 문제
-목적: 7번 문제에 필요한 함수를 구현한다 */
+/* CE1007/CZ1007 Data Structures
+Lab Test: Section E - Binary Trees Questions
+Purpose: Implementing the required functions for Question 7 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -17,7 +16,7 @@ typedef struct _btnode
     int item;
     struct _btnode *left;
     struct _btnode *right;
-} BTNode;   // BTNode의 정의는 변경하면 안 된다
+} BTNode;   // You should not change the definition of BTNode
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -35,7 +34,7 @@ typedef struct _stack
 
 ///////////////////////// Function prototypes ////////////////////////////////////
 
-// 이 함수들의 원형은 변경하면 안 된다
+// You should not change the prototypes of these functions
 int smallestValue(BTNode *node);
 
 BTNode *createBTNode(int item);
@@ -103,27 +102,7 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-    if(node==NULL){
-        return INT_MAX;
-    }
-    int minItem,leftMin,rightMin;
-    minItem=node->item;
-    if(node->left != NULL){
-        leftMin=smallestValue(node->left);
-    
-        if(minItem>leftMin){
-            minItem=leftMin;
-            
-    }}
-    if(node->right !=NULL){
-        rightMin=smallestValue(node->right);
-    
-        if(minItem>rightMin){
-            minItem=rightMin;
-    }}
-    return minItem;
-
-	/* 여기에 코드를 작성하세요 */
+	/* add your code here */
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -251,8 +230,3 @@ void removeAll(BTNode **node)
         *node = NULL;
     }
 }
-
-
-
-
-

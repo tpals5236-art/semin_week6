@@ -1,8 +1,8 @@
-﻿//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
-/* CE1007/CZ1007 자료구조
-실습 테스트: Section C - 스택과 큐 문제
-목적: 5번 문제에 필요한 함수를 구현한다 */
+/* CE1007/CZ1007 Data Structures
+Lab Test: Section C - Stack and Queue Questions
+Purpose: Implementing the required functions for Question 5 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -15,23 +15,23 @@ typedef struct _listnode
 {
 	int item;
 	struct _listnode *next;
-} ListNode;	// ListNode의 정의는 변경하면 안 된다
+} ListNode;	// You should not change the definition of ListNode
 
 typedef struct _linkedlist
 {
 	int size;
 	ListNode *head;
-} LinkedList;	// LinkedList의 정의는 변경하면 안 된다
+} LinkedList;	// You should not change the definition of LinkedList
 
 
 typedef struct _queue
 {
 	LinkedList ll;
-} Queue;  // Queue의 정의는 변경하면 안 된다
+} Queue;  // You should not change the definition of Queue
 
 ///////////////////////// function prototypes ////////////////////////////////////
 
-// 이 함수들의 원형은 변경하면 안 된다
+// You should not change the prototypes of these functions
 void recursiveReverse(Queue *q);
 
 // You may use the following functions or you may write your own
@@ -56,11 +56,11 @@ int main()
 
 	c = 1;
 
-	// 연결 리스트를 빈 리스트로 초기화
+	// Initialize the linked list as an empty linked list
 	ll.head = NULL;
 	ll.size = 0;
 
-	// 큐를 빈 큐로 초기화
+	// Initialize the Queue as an empty queue
 	q.ll.head = NULL;
 	q.ll.size = 0;
 
@@ -85,7 +85,7 @@ int main()
 			printList(&q.ll);
 			break;
 		case 2:
-			recursiveReverse(&q); // 이 함수는 직접 작성해야 한다
+			recursiveReverse(&q); // You need to code this function
 			printf("The resulting reversed queue is: ");
 			printList(&(q.ll));
 			removeAllItemsFromQueue(&q);
@@ -109,7 +109,7 @@ int main()
 
 void recursiveReverse(Queue *q)
 {
-/* 여기에 코드를 작성하세요 */
+/* add your code here */
 }
 
 //////////////////////////////////////////////////////////////////
@@ -208,7 +208,7 @@ int insertNode(LinkedList *ll, int index, int value){
 	if (ll == NULL || index < 0 || index > ll->size + 1)
 		return -1;
 
-	// 빈 리스트이거나 첫 번째 노드에 삽입하는 경우 head 포인터를 갱신해야 한다
+	// If empty list or inserting first node, need to update head pointer
 	if (ll->head == NULL || index == 0){
 		cur = ll->head;
 		ll->head = malloc(sizeof(ListNode));
@@ -223,8 +223,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	}
 
 
-	// 목표 위치의 바로 앞 노드와 현재 노드를 찾는다
-	// 새 노드를 만들고 연결을 다시 이어 준다
+	// Find the nodes before and at the target position
+	// Create a new node and reconnect the links
 	if ((pre = findNode(ll, index - 1)) != NULL){
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
@@ -246,11 +246,11 @@ int removeNode(LinkedList *ll, int index){
 
 	ListNode *pre, *cur;
 
-	// 삭제 가능한 가장 큰 인덱스는 size-1 이다
+	// Highest index we can remove is size-1
 	if (ll == NULL || index < 0 || index >= ll->size)
 		return -1;
 
-	// 첫 번째 노드를 삭제하는 경우 head 포인터를 갱신해야 한다
+	// If removing first node, need to update head pointer
 	if (index == 0){
 		cur = ll->head->next;
 		free(ll->head);
@@ -259,8 +259,8 @@ int removeNode(LinkedList *ll, int index){
 		return 0;
 	}
 
-	// 목표 위치의 앞 노드와 삭제할 노드를 찾는다
-	// 삭제할 노드를 해제하고 연결을 다시 이어 준다
+	// Find the nodes before and after the target position
+	// Free the target node and reconnect the links
 	if ((pre = findNode(ll, index - 1)) != NULL){
 
 		if (pre->next == NULL)
@@ -275,8 +275,3 @@ int removeNode(LinkedList *ll, int index){
 
 	return -1;
 }
-
-
-
-
-

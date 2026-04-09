@@ -1,8 +1,8 @@
-﻿//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
-/* CE1007/CZ1007 자료구조
-실습 테스트: Section A - 연결 리스트 문제
-목적: 2번 문제에 필요한 함수를 구현한다 */
+/* CE1007/CZ1007 Data Structures
+Lab Test: Section A - Linked List Questions
+Purpose: Implementing the required functions for Question 2 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -15,18 +15,18 @@ typedef struct _listnode
 {
 	int item;
 	struct _listnode *next;
-} ListNode;			// ListNode의 정의는 변경하면 안 된다
+} ListNode;			// You should not change the definition of ListNode
 
 typedef struct _linkedlist
 {
 	int size;
 	ListNode *head;
-} LinkedList;			// LinkedList의 정의는 변경하면 안 된다
+} LinkedList;			// You should not change the definition of LinkedList
 
 
 //////////////////////// function prototypes /////////////////////////////////////
 
-// 이 함수의 원형은 변경하면 안 된다
+// You should not change the prototype of this function
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2);
 
 void printList(LinkedList *ll);
@@ -43,11 +43,11 @@ int main()
 	LinkedList ll1, ll2;
 	int c, i, j;
 	c = 1;
-	//연결 리스트 1을 빈 리스트로 초기화
+	//Initialize the linked list 1 as an empty linked list
 	ll1.head = NULL;
 	ll1.size = 0;
 
-	//연결 리스트 2를 빈 리스트로 초기화
+	//Initialize the linked list 2 as an empty linked list
 	ll2.head = NULL;
 	ll2.size = 0;
 
@@ -79,7 +79,7 @@ int main()
 			break;
 		case 3:
 		    printf("The resulting linked lists after merging the given linked list are:\n");
-			alternateMergeLinkedList(&ll1, &ll2); // 이 함수는 직접 작성해야 한다
+			alternateMergeLinkedList(&ll1, &ll2); // You need to code this function
 			printf("The resulting linked list 1: ");
 			printList(&ll1);
 			printf("The resulting linked list 2: ");
@@ -103,45 +103,7 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-	ListNode *cur1;
-	ListNode *cur2;
-	ListNode *next1;
-	ListNode *next2;
-	ListNode *tail;
-
-	if (ll1->head == NULL) {
-		ll1->head = ll2->head;
-		ll1->size = ll2->size;
-		ll2->head = NULL;
-		ll2->size = 0;
-		return;
-	}
-	else if (ll2->head == NULL) {
-		return;
-	}
-
-	cur1 = ll1->head;
-	cur2 = ll2->head;
-
-	while (cur1 != NULL && cur2 != NULL) {
-		next1 = cur1->next;
-		next2 = cur2->next;
-
-		cur1->next = cur2;
-		cur2->next = next1;
-		tail = cur2;
-
-		cur1 = next1;
-		cur2 = next2;
-	}
-
-	if (cur1 == NULL && cur2 != NULL) {
-		tail->next = cur2;
-	}
-
-	ll1->size = ll1->size + ll2->size;
-	ll2->head = NULL;
-	ll2->size = 0;
+    /* add your code here */
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -208,7 +170,7 @@ int insertNode(LinkedList *ll, int index, int value){
 	if (ll == NULL || index < 0 || index > ll->size + 1)
 		return -1;
 
-	// 빈 리스트이거나 첫 번째 노드에 삽입하는 경우 head 포인터를 갱신해야 한다
+	// If empty list or inserting first node, need to update head pointer
 	if (ll->head == NULL || index == 0){
 		cur = ll->head;
 		ll->head = malloc(sizeof(ListNode));
@@ -219,8 +181,8 @@ int insertNode(LinkedList *ll, int index, int value){
 	}
 
 
-	// 목표 위치의 바로 앞 노드와 현재 노드를 찾는다
-	// 새 노드를 만들고 연결을 다시 이어 준다
+	// Find the nodes before and at the target position
+	// Create a new node and reconnect the links
 	if ((pre = findNode(ll, index - 1)) != NULL){
 		cur = pre->next;
 		pre->next = malloc(sizeof(ListNode));
@@ -238,11 +200,11 @@ int removeNode(LinkedList *ll, int index){
 
 	ListNode *pre, *cur;
 
-	// 삭제 가능한 가장 큰 인덱스는 size-1 이다
+	// Highest index we can remove is size-1
 	if (ll == NULL || index < 0 || index >= ll->size)
 		return -1;
 
-	// 첫 번째 노드를 삭제하는 경우 head 포인터를 갱신해야 한다
+	// If removing first node, need to update head pointer
 	if (index == 0){
 		cur = ll->head->next;
 		free(ll->head);
@@ -252,8 +214,8 @@ int removeNode(LinkedList *ll, int index){
 		return 0;
 	}
 
-	// 목표 위치의 앞 노드와 삭제할 노드를 찾는다
-	// 삭제할 노드를 해제하고 연결을 다시 이어 준다
+	// Find the nodes before and after the target position
+	// Free the target node and reconnect the links
 	if ((pre = findNode(ll, index - 1)) != NULL){
 
 		if (pre->next == NULL)
@@ -268,8 +230,3 @@ int removeNode(LinkedList *ll, int index){
 
 	return -1;
 }
-
-
-
-
-
