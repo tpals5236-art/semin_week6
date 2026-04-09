@@ -1,8 +1,8 @@
-//////////////////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////////
 
-/* CE1007/CZ1007 Data Structures
-Lab Test: Section F - Binary Search Trees Questions
-Purpose: Implementing the required functions for Question 3 */
+/* CE1007/CZ1007 자료구조
+실습 테스트: Section F - 이진 탐색 트리 문제
+목적: 3번 문제에 필요한 함수를 구현한다 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -15,21 +15,21 @@ typedef struct _bstnode{
 	int item;
 	struct _bstnode *left;
 	struct _bstnode *right;
-} BSTNode;   // You should not change the definition of BSTNode
+} BSTNode;   // BSTNode의 정의는 변경하면 안 된다
 
 typedef struct _stackNode{
 	BSTNode *data;
 	struct _stackNode *next;
-}StackNode; // You should not change the definition of StackNode
+}StackNode; // StackNode의 정의는 변경하면 안 된다
 
 typedef struct _stack
 {
 	StackNode *top;
-}Stack; // You should not change the definition of Stack
+}Stack; // Stack의 정의는 변경하면 안 된다
 
 ///////////////////////// function prototypes ////////////////////////////////////
 
-// You should not change the prototypes of these functions
+// 이 함수들의 원형은 변경하면 안 된다
 void preOrderIterative(BSTNode *root);
 
 void insertBSTNode(BSTNode **node, int value);
@@ -48,7 +48,7 @@ int main()
 	int c, i;
 	c = 1;
 
-	//Initialize the Binary Search Tree as an empty Binary Search Tree
+	//이진 탐색 트리를 빈 트리로 초기화
 	BSTNode * root;
 	root = NULL;
 
@@ -71,7 +71,7 @@ int main()
 			break;
 		case 2:
 			printf("The resulting pre-order traversal of the binary search tree is: ");
-			preOrderIterative(root); // You need to code this function
+			preOrderIterative(root); // 이 함수는 직접 작성해야 한다
 			printf("\n");
 			break;
 		case 0:
@@ -91,7 +91,25 @@ int main()
 
 void preOrderIterative(BSTNode *root)
 {
-	 /* add your code here */
+	Stack stack;
+	BSTNode *cur;
+	stack.top=NULL;
+	if(root==NULL){
+		return;
+	}
+	push(&stack,root);
+	while(stack.top !=NULL){
+		cur=pop(&stack);
+		printf("%d ",cur->item);
+		if(cur->right !=NULL){
+			push(&stack,cur->right);
+		}
+		if(cur->left !=NULL){
+			push(&stack,cur->left);
+		}
+
+	}
+	 /* 여기에 코드를 작성하세요 */
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -196,3 +214,8 @@ void removeAll(BSTNode **node)
 		*node = NULL;
 	}
 }
+
+
+
+
+
