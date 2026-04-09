@@ -1,8 +1,8 @@
-//////////////////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////////////////
 
-/* CE1007/CZ1007 Data Structures
-Lab Test: Section E - Binary Trees Questions
-Purpose: Implementing the required functions for Question 3 */
+/* CE1007/CZ1007 자료구조
+실습 테스트: Section E - 이진 트리 문제
+목적: 3번 문제에 필요한 함수를 구현한다 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -15,7 +15,7 @@ typedef struct _btnode
     int item;
     struct _btnode *left;
     struct _btnode *right;
-} BTNode;   // You should not change the definition of BTNode
+} BTNode;   // BTNode의 정의는 변경하면 안 된다
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -32,7 +32,7 @@ typedef struct _stack
 
 ///////////////////////// function prototypes ////////////////////////////////////
 
-// You should not change the prototypes of these functions
+// 이 함수들의 원형은 변경하면 안 된다
 int countOneChildNodes(BTNode *node);
 
 BTNode *createBTNode(int item);
@@ -101,7 +101,19 @@ int main()
 int countOneChildNodes(BTNode *node)
 
 {
-    /* add your code here */
+    if(node==NULL){
+        return 0;
+    }
+    int leftCount, rightCount;
+    leftCount=countOneChildNodes(node->left);
+    rightCount=countOneChildNodes(node->right);
+    if(node->left !=NULL && node->right==NULL || node->left==NULL && node->right !=NULL){
+        return (leftCount+rightCount)+1;
+    }
+    else{
+        return leftCount+rightCount;
+    }
+    /* 여기에 코드를 작성하세요 */
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -229,4 +241,9 @@ void removeAll(BTNode **node)
         *node = NULL;
     }
 }
+
+
+
+
+
 
